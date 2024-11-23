@@ -7,6 +7,7 @@ from store import views  # Import views from your app
 urlpatterns = [
     # Admin URL route
     path('admin/', admin.site.urls),
+    path('medicines/', views.medicine_list, name='medicine_list'),
     
     # Home page route
     path('', views.home, name='home'),  # This will render the home view when accessing the root URL
