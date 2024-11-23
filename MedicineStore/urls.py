@@ -1,16 +1,26 @@
+# MedicineStore/urls.py (Project-Level)
+
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
-from store import views  # Import views from your app
+from authentication import views as auth_views  # Correct import for authentication views
+from store import views as store_views  # Import views from the store app
 
 urlpatterns = [
     # Admin URL route
     path('admin/', admin.site.urls),
-    path('medicines/', views.medicine_list, name='medicine_list'),
+    
+    # Authentication URLs
+    path('register/', auth_views.register_view, name='register'),
+    path('login/', auth_views.login_view, name='login'),
+    path('logout/', auth_views.logout_view, name='logout'),
     
     # Home page route
-    path('', views.home, name='home'),  # This will render the home view when accessing the root URL
+    path('', store_views.home, name='home'),  # This will render the home view when accessing the root URL
+    
+    # Medicines page route
+    path('medicines/', store_views.medicine_list, name='medicine_list'),
 ]
 
 # Add static and media file URLs when in development mode

@@ -41,9 +41,19 @@
                 <a href="#"><img src="{% static 'images/cart-icon.jpg' %}" alt="Cart"></a>
             </div>
             <ul class="navbar-nav ms-auto">
-                <li class="nav-item">
-                    <a class="nav-link btn-signin" href="#">Sign In</a>
-                </li>
+            </li>
+            {% if user.is_authenticated %}
+            <li class="nav-item">
+              <a class="btn btn-secondary me-4" href="/logout/">Logout</a>
+            </li>
+            {% else %}
+            <li class="nav-item">
+              <a class="btn btn-secondary" href="/login/">Login</a>
+            </li>
+            <li class="nav-iterm">
+              <a class="btn btn-secondary ms-2 me-4" href="/register/">Register</a>
+            </li>
+            {% endif %}
             </ul>
         </div>
     </nav>
@@ -59,9 +69,9 @@
     <footer class="footer">
         <p>&copy; 2024 MedEasy. All rights reserved.</p>
         <div class="social-icons">
-            <a href="#"><img src="{% static 'images/facebook-icon.png' %}" alt="Facebook"></a>
-            <a href="#"><img src="{% static 'images/twitter-icon.png' %}" alt="Twitter"></a>
-            <a href="#"><img src="{% static 'images/instagram-icon.png' %}" alt="Instagram"></a>
+            <a href="#"><img src="{% static 'images/facebook-icon.avif' %}" alt="Facebook"></a>
+            <a href="#"><img src="{% static 'images/twitter-ogo.avif' %}" alt="Twitter"></a>
+            <a href="#"><img src="{% static 'images/instagram-icon.avif' %}" alt="Instagram"></a>
         </div>
     </footer>
 
