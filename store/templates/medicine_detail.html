@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ medicine.name }} - Medicine Details{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="row">
+        <div class="col-md-4">
+            {% if medicine.picture %}
+                <img src="{{ medicine.picture.url }}" class="img-fluid rounded" alt="{{ medicine.name }}">
+            {% else %}
+                <img src="https://via.placeholder.com/300" class="img-fluid rounded" alt="{{ medicine.name }}">
+            {% endif %}
+        </div>
+        <div class="col-md-8">
+            <h2>{{ medicine.name }}</h2>
+            <p><strong>Generic Name:</strong> {{ medicine.generic_name }}</p>
+            <p><strong>Category:</strong> {{ medicine.category.name }}</p>
+            <p><strong>Price:</strong> ${{ medicine.price }}</p>
+            <p><strong>Description:</strong></p>
+            <p>{{ medicine.description }}</p>
+
+            <p><strong>Dosage and Administration:</strong></p>
+            <p>{{ medicine.Dosage }}</p>
+
+            {% if medicine.side_effects %}
+                <p><strong>Side Effects:</strong> {{ medicine.side_effects }}</p>
+            {% endif %}
+            <a href="#" class="btn btn-primary">Add to Cart</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

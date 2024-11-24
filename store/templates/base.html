@@ -21,7 +21,7 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav me-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Home</a>
+                    <a class="nav-link" href="/">Home</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">About</a>
@@ -33,10 +33,26 @@
                     <a class="nav-link" href="#">Contact</a>
                 </li>
             </ul>
-            <div class="search-bar">
+            {% comment %} <div class="search-bar">
                 <input class="form-control me-2" type="search" placeholder="Search Medicine" aria-label="Search">
                 <button class="btn" type="submit">Search</button>
+            </div> {% endcomment %}
+            <div class="search-bar" style="margin-left: auto ;">
+                <form method="GET" action="{% url 'search_results' %}" class="d-flex">
+                    <input class="form-control me-2" type="search" name="q" placeholder="Search Medicine" aria-label="Search" style="width: 52vw ; height: 40px; font-size: 14px;">
+                    <button class="btn btn-outline-primary" type="submit" style="height: 40px; font-size: 14px;">Search</button>
+                </form>
             </div>
+            
+            
+
+            {% comment %} <div class="search-bar">
+                <form method="GET" action="{% url 'search_results' %}">
+                    <input class="form-control me-2" type="search" name="q" placeholder="Search Medicine" aria-label="Search">
+                    <button class="btn" type="submit">Search</button>
+                </form>
+            </div> {% endcomment %}
+
             <div class="cart-icon">
                 <a href="#"><img src="{% static 'images/cart-icon.jpg' %}" alt="Cart"></a>
             </div>

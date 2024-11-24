@@ -1,10 +1,8 @@
-# authentication/views.py
-
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 from django.contrib import messages
-from django.contrib.auth.models import User 
+from .models import Profile
 
 # Register View
 def register_view(request):
@@ -13,24 +11,28 @@ def register_view(request):
         last_name = request.POST.get('last_name')
         username = request.POST.get('username')
         password = request.POST.get('password')
+        phone_number = request.POST.get('phone_number')
+        address = request.POST.get('address')
 
-        user = User.objects.filter(username=username)
-        if user.exists():
-            messages.info(request, 'Username already taken')
+        # Check if username already exists
+        if User.objects.filter(username=username).exists():
+            messages.error(request, 'Username already taken')
             return redirect('/register/')
 
-        # Creating a new user
+        # Create a new user
         user = User.objects.create_user(
             first_name=first_name,
             last_name=last_name,
             username=username,
         )
-
         user.set_password(password)
         user.save()
 
-        messages.info(request, 'Account created successfully')
-        return redirect('/register/')
+        # Manually create a profile for the user
+        Profile.objects.create(user=user, phone_number=phone_number, address=address)
+
+        messages.success(request, 'Account created successfully')
+        return redirect('/login/')
 
     return render(request, 'register.html')
 
@@ -50,11 +52,7 @@ def login_view(request):
             return redirect('/login/')
     return render(request, 'login.html')
 
-def logout_page(request):
-    logout(request)
-    return redirect('/login/')
-
 # Logout View
 def logout_view(request):
-    logout(request)  # Log the user out
-    return redirect('login')  # Redirect to login page after logout
+    logout(request)
+    return redirect('login')

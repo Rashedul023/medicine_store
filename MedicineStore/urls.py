@@ -21,6 +21,9 @@ urlpatterns = [
     
     # Medicines page route
     path('medicines/', store_views.medicine_list, name='medicine_list'),
+    path('medicines/<int:medicine_id>/',store_views.medicine_detail, name='medicine_detail'),
+    path('search/', store_views.search_results, name='search_results'),
+    path('category/<str:category_name>/', store_views.category_products, name='category_products'),
 ]
 
 # Add static and media file URLs when in development mode

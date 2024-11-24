@@ -15,8 +15,9 @@ class Medicine(models.Model):
         Category,
         on_delete=models.CASCADE,
         related_name="medicines",
-        default=1,  # Replace '1' with the ID of an existing category in your database
+        default= 'OTC Medicine',  # Replace '1' with the ID of an existing category in your database
     )
+    Dosage = models.TextField(blank=True, null=True)
     side_effects = models.TextField(blank=True, null=True)  # Optional side effects
     price = models.DecimalField(max_digits=10, decimal_places=2)  # Price of the medicine
     picture = models.ImageField(upload_to='products/',blank=True, null=True)  # Picture of the medicine

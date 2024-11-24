@@ -6,12 +6,24 @@
 {% load static %} <!-- Load the static files first -->
 
 <!-- Sidebar for Categories -->
+{% comment %} <div class="sidebar ">
+    <a href="/medicines/">All products</a>
+    <a href="#">OTC Medicine</a>
+    <a href="#">Prescription Medicine</a>
+    <a href="#">Supplement</a>
+    <a href="#">Personal Care</a>
+    <a href="#">Dental Care</a>
+    <a href="#">Devices</a>
+</div> {% endcomment %}
+
 <div class="sidebar">
-    <a href="#">Category 1</a>
-    <a href="#">Category 2</a>
-    <a href="#">Category 3</a>
-    <a href="#">Category 4</a>
-    <a href="#">Category 5</a>
+    <a href="{% url 'medicine_list' %}">All products</a>
+    <a href="{% url 'category_products' 'OTC Medicine' %}">OTC Medicine</a>
+    <a href="{% url 'category_products' 'Prescription Medicine' %}">Prescription Medicine</a>
+    <a href="{% url 'category_products' 'Supplement' %}">Supplement</a>
+    <a href="{% url 'category_products' 'Personal Care' %}">Personal Care</a>
+    <a href="{% url 'category_products' 'Dental Care' %}">Dental Care</a>
+    <a href="{% url 'category_products' 'Devices' %}">Devices</a>
 </div>
 
 <!-- Main Content -->

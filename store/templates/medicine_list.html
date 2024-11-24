@@ -3,53 +3,73 @@
 {% block title %}Medicines - Medicine Store{% endblock %}
 
 {% block content %}
-    <div class="row row-cols-1 row-cols-md-6 g-2">  <!-- Using Bootstrap grid with reduced gap (g-2) -->
+<div class="container my-4">
+    
+    <div class="row row-cols-2 row-cols-md-6 g-3">  <!-- Responsive grid with moderate spacing -->
         {% for medicine in medicines %}
-            <div class="col mb-4">  <!-- Adjusted column size without margin -->
-                <div class="card h-100">  <!-- Added h-100 to ensure equal height -->
+            <div class="col">
+                <div class="card h-100">  <!-- Consistent height for cards -->
                     {% if medicine.picture %}
                         <img src="{{ medicine.picture.url }}" class="card-img-top" alt="{{ medicine.name }}">
                     {% else %}
-                        <img src="https://via.placeholder.com/150" class="card-img-top" alt="{{ medicine.name }}">
+                        <img src="https://via.placeholder.com/200" class="card-img-top" alt="{{ medicine.name }}">
                     {% endif %}
-                    <div class="card-body">
-                        <h5 class="card-title">{{ medicine.name }}</h5>
-                        <p class="card-text">Price: ${{ medicine.price }}</p>
-                        <a href="#" class="btn btn-info btn-sm">Description</a>
-                        <a href="#" class="btn btn-primary btn-sm">Add to Cart</a>
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title text-truncate">{{ medicine.name }}</h5>  <!-- Truncated title if too long -->
+                        <p class="card-text mb-1">Price: ${{ medicine.price }}</p>
+                        <div class="mt-auto">
+                            <a href="{% url 'medicine_detail' medicine.id %}" class="btn btn-info btn w-100 mb-2">Description</a>
+                            <a href="#" class="btn btn-primary btn w-100">Add to Cart</a>
+                        </div>
                     </div>
                 </div>
             </div>
         {% endfor %}
     </div>
+</div>
 
-    <style>
-        /* Custom Styles for Medicine Cards */
+<style>
+    /* Custom Styles for Medium-Sized Medicine Cards */
+    .card {
+        width: 200px;  /* Medium card width */
+        min-height: 300px;  /* Ensure consistent height */
+    }
+
+    .card-img-top {
+        height: 130px;  /* Medium-sized image */
+        object-fit: cover;  /* Maintain aspect ratio */
+    }
+
+    .card-title {
+        font-size: 1rem;  /* Standard font size for title */
+        font-weight: bold;
+        text-align: center;
+    }
+
+    .card-text {
+        font-size: 0.9rem;  /* Slightly smaller font size for price */
+        text-align: center;
+    }
+
+    .btn {
+        font-size: 0.85rem;  /* Adjust button font size */
+        padding: 0.5rem 1rem;  /* Add padding for a better appearance */
+    }
+
+    .btn.w-100 {
+        width: 100%;  /* Ensure the button takes up the full width */
+    }
+
+    .row-cols-md-6 > * {
+        padding-left: 5px;  /* Moderate padding between cards */
+        padding-right: 5px;
+    }
+
+    @media (max-width: 576px) {
         .card {
-            width: 200px;  /* Set the card width smaller */
-            min-height: 250px;  /* Minimum height to make all cards the same height */
-            margin: 1px;  /* Center the cards horizontally */
+            width: 180px;  /* Slightly smaller cards on small screens */
+            min-height: 260px;
         }
-
-        .card-body {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .card-img-top {
-            height: 120px;  /* Set a smaller height for the images */
-            object-fit: cover;  /* Ensures the image maintains aspect ratio and fills the space */
-        }
-
-        .btn-sm {
-            font-size: 0.8rem;  /* Reduce button text size */
-        }
-
-        /* Adjust margins and padding for smaller gaps between cards */
-        .col {
-            padding-left: 0px;  /* Reduce left padding */
-            padding-right: 5px;  /* Reduce right padding */
-        }
-    </style>
+    }
+</style>
 {% endblock %}
