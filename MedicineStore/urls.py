@@ -6,6 +6,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from authentication import views as auth_views  # Correct import for authentication views
 from store import views as store_views  # Import views from the store app
+from cart import views as cart_views
 
 urlpatterns = [
     # Admin URL route
@@ -24,6 +25,16 @@ urlpatterns = [
     path('medicines/<int:medicine_id>/',store_views.medicine_detail, name='medicine_detail'),
     path('search/', store_views.search_results, name='search_results'),
     path('category/<str:category_name>/', store_views.category_products, name='category_products'),
+
+    # path('cart/', cart_views.view_cart, name='view_cart'),
+    # path('cart/add/<int:medicine_id>/', cart_views.add_to_cart, name='add_to_cart'),
+    # path('cart/remove/<int:item_id>/', cart_views.remove_from_cart, name='remove_from_cart'),
+    path('cart/add/<int:medicine_id>/', cart_views.add_to_cart, name='add_to_cart'),
+    path('cart/add/<int:medicine_id>/<int:quantity>/', cart_views.add_to_cart, name='add_to_cart_quantity'),
+    path('cart/minus/<int:medicine_id>/<int:quantity>/', cart_views.minus_to_cart, name='minus_to_cart_quantity'),
+    path('cart/', cart_views.view_cart, name='view_cart'),
+    path('cart/remove/<int:item_id>/', cart_views.remove_from_cart, name='remove_from_cart'),
+
 ]
 
 # Add static and media file URLs when in development mode

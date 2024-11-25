@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block title %}Your Cart{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <h2 class="mb-4">Your Cart</h2>
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Total</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if cart.items.all %}
+                {% for item in cart.items.all %}
+                    <tr>
+                        <td>{{ item.medicine.name }}</td>
+                        <td>{{ item.quantity }}</td>
+                        <td>${{ item.medicine.price }}</td>
+                        <td>${{ item.get_total_price }}</td>
+                        <td>
+                            <!-- Add 1 -->
+                            <a href="/cart/add/{{ item.medicine.id }}/1/" class="btn btn-primary btn-sm">Add 1</a>
+                            <!-- Add 10 -->
+                            <a href="/cart/add/{{ item.medicine.id }}/10/" class="btn btn-success btn-sm">Add 10</a>
+                            <!-- Minus 1 -->
+                            <a href="/cart/minus/{{ item.medicine.id }}/1/" class="btn btn-warning btn-sm">Minus 1</a>
+                            <!-- Minus 10 -->
+                            <a href="/cart/minus/{{ item.medicine.id }}/10/" class="btn btn-danger btn-sm">Minus 10</a>
+                            <!-- Remove -->
+                            <a href="/cart/remove/{{ item.id }}/" class="btn btn-danger btn-sm">Remove</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                <!-- Display Total Price -->
+                <tr>
+                    <td colspan="3"></td>
+                    <td><strong>Total:</strong></td>
+                    <td><strong>${{ cart.get_total_price }}</strong></td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="5" class="text-center">Your cart is empty.</td>
+                </tr>
+            {% endif %}
+        </tbody>
+    </table>
+
+    <!-- Order Button -->
+    <div class="d-flex justify-content-between">
+        <a href="/checkout/" class="btn btn-warning btn-lg">Proceed to Checkout</a>
+        <a href="/" class="btn btn-secondary btn-lg">Continue Shopping</a>
+    </div>
+</div>
+{% endblock %}
