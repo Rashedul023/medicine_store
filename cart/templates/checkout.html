@@ -1,0 +1,128 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container my-5">
+    <h2 class="text-center mb-4">Choose Your Payment Method</h2>
+    <div class="row">
+        <!-- bKash -->
+        <div class="col-md-3 mb-4">
+            <a href="#" class="payment-option">
+                <div class="card shadow-sm text-center">
+                    <img src="{% static 'images/bkash.png' %}" class="card-img-top payment-img" alt="bKash">
+                    <div class="card-body">
+                        <h6 class="card-title">bKash</h6>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <!-- Nagad -->
+        <div class="col-md-3 mb-4">
+            <a href="#" class="payment-option">
+                <div class="card shadow-sm text-center">
+                    <img src="{% static 'images/nagad.png' %}" class="card-img-top payment-img" alt="Nagad">
+                    <div class="card-body">
+                        <h6 class="card-title">Nagad</h6>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <!-- Rocket -->
+        <div class="col-md-3 mb-4">
+            <a href="#" class="payment-option">
+                <div class="card shadow-sm text-center">
+                    <img src="{% static 'images/rocket.png' %}" class="card-img-top payment-img" alt="Rocket">
+                    <div class="card-body">
+                        <h6 class="card-title">Rocket</h6>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <!-- Cash on Delivery -->
+        <div class="col-md-3 mb-4">
+            <a href="#" class="payment-option">
+                <div class="card shadow-sm text-center">
+                    <img src="{% static 'images/cash_on_delivery.png' %}" class="card-img-top payment-img" alt="Cash on Delivery">
+                    <div class="card-body">
+                        <h6 class="card-title">Cash on Delivery</h6>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <!-- Dutch Bangla Bank -->
+        <div class="col-md-3 mb-4">
+            <a href="#" class="payment-option">
+                <div class="card shadow-sm text-center">
+                    <img src="{% static 'images/dutch_bangla_bank.png' %}" class="card-img-top payment-img" alt="Dutch Bangla Bank">
+                    <div class="card-body">
+                        <h6 class="card-title">Dutch Bangla Bank</h6>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <!-- Mastercard -->
+        <div class="col-md-3 mb-4">
+            <a href="#" class="payment-option">
+                <div class="card shadow-sm text-center">
+                    <img src="{% static 'images/mastercard.png' %}" class="card-img-top payment-img" alt="Mastercard">
+                    <div class="card-body">
+                        <h6 class="card-title">Mastercard</h6>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <!-- Visa Card -->
+        <div class="col-md-3 mb-4">
+            <a href="#" class="payment-option">
+                <div class="card shadow-sm text-center">
+                    <img src="{% static 'images/visa.png' %}" class="card-img-top payment-img" alt="Visa">
+                    <div class="card-body">
+                        <h6 class="card-title">Visa Card</h6>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <!-- Google Pay -->
+        <div class="col-md-3 mb-4">
+            <a href="#" class="payment-option">
+                <div class="card shadow-sm text-center">
+                    <img src="{% static 'images/googlepay.png' %}" class="card-img-top payment-img" alt="Google Pay">
+                    <div class="card-body">
+                        <h6 class="card-title">Google Pay</h6>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- Inline CSS -->
+<style>
+    .payment-option {
+        text-decoration: none;
+        color: inherit;
+    }
+
+    .payment-option:hover .card {
+        transform: translateY(-5px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        transition: 0.3s ease-in-out;
+    }
+
+    .payment-img {
+        height: 100px; /* Reduced height for smaller icons */
+        object-fit: contain;
+        padding: 10px;
+    }
+
+    .card {
+        border: none;
+        border-radius: 10px;
+    }
+
+    h6.card-title {
+        font-size: 14px;
+        margin: 0;
+    }
+</style>
+{% endblock %}

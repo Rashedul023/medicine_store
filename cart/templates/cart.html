@@ -5,6 +5,14 @@
 {% block content %}
 <div class="container my-5">
     <h2 class="mb-4">Your Cart</h2>
+    {% if messages %}
+<div class="alert alert-warning">
+    {% for message in messages %}
+        <p>{{ message }}</p>
+    {% endfor %}
+</div>
+{% endif %}
+
     <table class="table table-bordered table-striped">
         <thead>
             <tr>
@@ -31,7 +39,7 @@
                             <!-- Minus 1 -->
                             <a href="/cart/minus/{{ item.medicine.id }}/1/" class="btn btn-warning btn-sm">Minus 1</a>
                             <!-- Minus 10 -->
-                            <a href="/cart/minus/{{ item.medicine.id }}/10/" class="btn btn-danger btn-sm">Minus 10</a>
+                            <a href="/cart/minus/{{ item.medicine.id }}/10/" class="btn btn-dark btn-sm">Minus 10</a>
                             <!-- Remove -->
                             <a href="/cart/remove/{{ item.id }}/" class="btn btn-danger btn-sm">Remove</a>
                         </td>
@@ -53,7 +61,8 @@
 
     <!-- Order Button -->
     <div class="d-flex justify-content-between">
-        <a href="/checkout/" class="btn btn-warning btn-lg">Proceed to Checkout</a>
+        <a href="{% url 'checkout' %}" class="btn btn-success btn-lg">Proceed to Checkout</a>
+
         <a href="/" class="btn btn-secondary btn-lg">Continue Shopping</a>
     </div>
 </div>

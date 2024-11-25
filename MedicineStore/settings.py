@@ -28,6 +28,7 @@ INSTALLED_APPS = [
     'store',
     'authentication',
     'cart',
+    'hospital'
 ]
 
 MIDDLEWARE = [

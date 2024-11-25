@@ -23,15 +23,37 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/">Home</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">About</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Services</a>
-                </li>
-                <li class="nav-item">
+                {% comment %} <li class="nav-item">
                     <a class="nav-link" href="#">Contact</a>
+                </li> {% endcomment %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'hospital_number' %}">Hospitals</a>
                 </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="categoryDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Category
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="categoryDropdown">
+                        <li><a class="dropdown-item" href="{% url 'medicine_list' %}">All Products</a></li>
+                        <li><a class="dropdown-item" href="{% url 'category_products' 'OTC Medicine' %}">OTC Medicine</a></li>
+                        <li><a class="dropdown-item" href="{% url 'category_products' 'Prescription Medicine' %}">Prescription Medicine</a></li>
+                        <li><a class="dropdown-item" href="{% url 'category_products' 'Supplement' %}">Supplement</a></li>
+                        <li><a class="dropdown-item" href="{% url 'category_products' 'Personal Care' %}">Personal Care</a></li>
+                        <li><a class="dropdown-item" href="{% url 'category_products' 'Dental Care' %}">Dental Care</a></li>
+                        <li><a class="dropdown-item" href="{% url 'category_products' 'Devices' %}">Devices</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="helpDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        More
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="helpDropdown">
+                        <li><a class="dropdown-item" href={% url 'health_tips' %}>Health Tips</a></li>
+                        {% comment %} <li><a class="dropdown-item" href={% url 'hospital_number'%}>Emergency Numbers</a></li> {% endcomment %}
+                        <li><a class="dropdown-item" href="#">Contact</a></li>
+                    </ul>
+                </li>
+
             </ul>
             {% comment %} <div class="search-bar">
                 <input class="form-control me-2" type="search" placeholder="Search Medicine" aria-label="Search">
@@ -39,7 +61,11 @@
             </div> {% endcomment %}
             <div class="search-bar" style="margin-left: auto ;">
                 <form method="GET" action="{% url 'search_results' %}" class="d-flex">
-                    <input class="form-control me-2" type="search" name="q" placeholder="Search Medicine" aria-label="Search" style="width: 52vw ; height: 40px; font-size: 14px;">
+                    {% if user.is_authenticated %}
+                    <input class="form-control me-2" type="search" name="q" placeholder="Search Medicine" aria-label="Search" style="width: 55vw ; height: 40px; font-size: 14px;">
+                    {% else %}
+                    <input class="form-control me-2" type="search" name="q" placeholder="Search Medicine" aria-label="Search" style="width: 50vw ; height: 40px; font-size: 14px;">
+                    {%endif%}
                     <button class="btn btn-outline-primary" type="submit" style="height: 40px; font-size: 14px;">Search</button>
                 </form>
             </div>
@@ -54,7 +80,7 @@
             </div> {% endcomment %}
 
             <div class="cart-icon">
-                <a href="#"><img src="{% static 'images/cart-icon.jpg' %}" alt="Cart"></a>
+                <a href="/cart/"><img src="{% static 'images/cart-icon.jpg' %}" alt="Cart"></a>
             </div>
             <ul class="navbar-nav ms-auto">
             </li>

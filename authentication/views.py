@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.models import User
 from django.contrib import messages
-from .models import Profile
+from .models import Profile, Tip
 
 # Register View
 def register_view(request):
@@ -56,3 +56,7 @@ def login_view(request):
 def logout_view(request):
     logout(request)
     return redirect('login')
+
+def health_tips(request):
+    tips = Tip.objects.all()  # Fetch all tips
+    return render(request, 'health_tips.html', {'tips': tips})

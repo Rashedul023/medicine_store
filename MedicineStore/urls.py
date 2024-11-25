@@ -7,6 +7,7 @@ from django.conf.urls.static import static
 from authentication import views as auth_views  # Correct import for authentication views
 from store import views as store_views  # Import views from the store app
 from cart import views as cart_views
+from hospital import views as hospital_views
 
 urlpatterns = [
     # Admin URL route
@@ -34,6 +35,10 @@ urlpatterns = [
     path('cart/minus/<int:medicine_id>/<int:quantity>/', cart_views.minus_to_cart, name='minus_to_cart_quantity'),
     path('cart/', cart_views.view_cart, name='view_cart'),
     path('cart/remove/<int:item_id>/', cart_views.remove_from_cart, name='remove_from_cart'),
+    path('checkout/', cart_views.checkout, name='checkout'),
+    path('health-tips/', auth_views.health_tips, name='health_tips'),
+
+    path('hospitals/', hospital_views.hospital_number, name='hospital_number'),
 
 ]
 

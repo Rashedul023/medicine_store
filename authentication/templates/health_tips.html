@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}MedEasy - Health Tips{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Health Tips for a Better Lifestyle</h1>
+    <p>Follow these tips to enhance your physical, mental, and emotional well-being.</p>
+
+    {% for tip in tips %}
+    <div class="tip">
+        <h2>{{ tip.title }}</h2>
+        <p>{{ tip.description }}</p>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
