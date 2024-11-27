@@ -20,8 +20,10 @@
             <p><strong>Description:</strong></p>
             <p>{{ medicine.description }}</p>
 
+            {% if medicine.Dosage %}
             <p><strong>Dosage and Administration:</strong></p>
             <p>{{ medicine.Dosage }}</p>
+            {% endif %}
 
             {% if medicine.side_effects %}
                 <p><strong>Side Effects:</strong> {{ medicine.side_effects }}</p>

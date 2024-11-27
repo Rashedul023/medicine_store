@@ -4,76 +4,106 @@
 
 {% block content %}
 <div class="container my-4">
-    
-    <div class="row row-cols-2 row-cols-md-6 g-3">  <!-- Responsive grid with moderate spacing -->
+    <div class="row row-cols-2 row-cols-md-6 g-3">
         {% for medicine in medicines %}
             <div class="col">
-                <div class="card h-100">  <!-- Consistent height for cards -->
+                <div class="card h-100">
                     {% if medicine.picture %}
                         <img src="{{ medicine.picture.url }}" class="card-img-top" alt="{{ medicine.name }}">
                     {% else %}
                         <img src="https://via.placeholder.com/200" class="card-img-top" alt="{{ medicine.name }}">
                     {% endif %}
                     <div class="card-body d-flex flex-column">
-                        <h5 class="card-title text-truncate">{{ medicine.name }}</h5>  <!-- Truncated title if too long -->
+                        <h5 class="card-title text-truncate">{{ medicine.name }}</h5>
                         <p class="card-text mb-1">Price: ${{ medicine.price }}</p>
                         <div class="mt-auto">
-                            <a href="{% url 'medicine_detail' medicine.id %}" class="btn btn-info btn w-100 mb-2">Description</a>
+                            <a href="{% url 'medicine_detail' medicine.id %}" class="btn btn-info w-100 mb-2">Description</a>
                             {% if user.is_authenticated %}
-                            <a href="{% url 'add_to_cart' medicine.id %}" class="btn btn-primary w-100">Add to Cart</a>
+                                <a href="{% url 'add_to_cart' medicine.id %}" class="btn btn-primary w-100">Add to Cart</a>
                             {% else %}
-                            <a href="{% url 'login' %}" class="btn btn-primary w-100">login to Add to Cart</a>
+                                <a href="{% url 'login' %}" class="btn btn-primary w-100">Login to Add to Cart</a>
                             {% endif %}
-                        
-
                         </div>
                     </div>
                 </div>
             </div>
         {% endfor %}
     </div>
+
+    <!-- Pagination Controls -->
+    <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center my-4">
+            {% if medicines.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="?page=1" aria-label="First">
+                        <span aria-hidden="true">&laquo;&laquo;</span>
+                    </a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ medicines.previous_page_number }}" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+            {% endif %}
+
+            {% for num in medicines.paginator.page_range %}
+                {% if num == medicines.number %}
+                    <li class="page-item active">
+                        <span class="page-link">{{ num }}</span>
+                    </li>
+                {% elif num > medicines.number|add:'-3' and num < medicines.number|add:'3' %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+                    </li>
+                {% endif %}
+            {% endfor %}
+
+            {% if medicines.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ medicines.next_page_number }}" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ medicines.paginator.num_pages }}" aria-label="Last">
+                        <span aria-hidden="true">&raquo;&raquo;</span>
+                    </a>
+                </li>
+            {% endif %}
+        </ul>
+    </nav>
 </div>
 
 <style>
-    /* Custom Styles for Medium-Sized Medicine Cards */
     .card {
-        width: 200px;  /* Medium card width */
-        min-height: 300px;  /* Ensure consistent height */
+        width: 200px;
+        min-height: 300px;
     }
 
     .card-img-top {
-        height: 130px;  /* Medium-sized image */
-        object-fit: cover;  /* Maintain aspect ratio */
+        height: 130px;
+        object-fit: cover;
     }
 
     .card-title {
-        font-size: 1rem;  /* Standard font size for title */
+        font-size: .85rem;
         font-weight: bold;
         text-align: center;
     }
 
     .card-text {
-        font-size: 0.9rem;  /* Slightly smaller font size for price */
+        font-size: 0.9rem;
         text-align: center;
     }
 
     .btn {
-        font-size: 0.85rem;  /* Adjust button font size */
-        padding: 0.5rem 1rem;  /* Add padding for a better appearance */
-    }
-
-    .btn.w-100 {
-        width: 100%;  /* Ensure the button takes up the full width */
-    }
-
-    .row-cols-md-6 > * {
-        padding-left: 5px;  /* Moderate padding between cards */
-        padding-right: 5px;
+        font-size: 0.85rem;
+        padding: 0.5rem 1rem;
     }
 
     @media (max-width: 576px) {
         .card {
-            width: 180px;  /* Slightly smaller cards on small screens */
+            width: 180px;
             min-height: 260px;
         }
     }

@@ -14,7 +14,7 @@ class Cart(models.Model):
 class CartItem(models.Model):
     cart = models.ForeignKey(Cart, on_delete=models.CASCADE, related_name='items')
     medicine = models.ForeignKey('store.Medicine', on_delete=models.CASCADE)  # Corrected app reference
-    quantity = models.PositiveIntegerField(default=1)
+    quantity = models.PositiveIntegerField(default=0)
 
     def get_total_price(self):
         return self.medicine.price * self.quantity
