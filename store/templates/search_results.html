@@ -35,4 +35,42 @@
         {% endif %}
     </div>
 </div>
+<style>
+    .card {
+        width: 200px;
+        min-height: 300px;
+    }
+
+    .card-img-top {
+        height: 130px;
+        object-fit: cover;
+    }
+
+    .card-title {
+        font-size: 0.85rem;
+        font-weight: bold;
+        text-align: center;
+        white-space: normal; /* Allows wrapping */
+        line-height: 1.2; /* Adjusts line spacing for readability */
+        max-height: 2.4em; /* Limits to two lines */
+        overflow: hidden; /* Prevents overflow beyond two lines */
+    }
+
+    .card-text {
+        font-size: 0.9rem;
+        text-align: center;
+    }
+
+    .btn {
+        font-size: 0.85rem;
+        padding: 0.5rem 1rem;
+    }
+
+    @media (max-width: 576px) {
+        .card {
+            width: 180px;
+            min-height: 260px;
+        }
+    }
+</style>
 {% endblock %}

@@ -86,9 +86,13 @@
     }
 
     .card-title {
-        font-size: .85rem;
+        font-size: 0.85rem;
         font-weight: bold;
         text-align: center;
+        white-space: normal; /* Allows wrapping */
+        line-height: 1.2; /* Adjusts line spacing for readability */
+        max-height: 2.4em; /* Limits to two lines */
+        overflow: hidden; /* Prevents overflow beyond two lines */
     }
 
     .card-text {
