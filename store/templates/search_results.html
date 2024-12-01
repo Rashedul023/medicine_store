@@ -35,6 +35,40 @@
         {% endif %}
     </div>
 </div>
+
+
+
+<h2 class="mb-4">Related Products</h2>
+<div class="row row-cols-2 row-cols-md-6 g-3">
+    {% if related_medicines %}
+        {% for medicine in related_medicines %}
+            <div class="col">
+                <div class="card h-100">
+                    {% if medicine.picture %}
+                        <img src="{{ medicine.picture.url }}" class="card-img-top" alt="{{ medicine.name }}">
+                    {% else %}
+                        <img src="https://via.placeholder.com/200" class="card-img-top" alt="{{ medicine.name }}">
+                    {% endif %}
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title text-truncate">{{ medicine.name }}</h5>
+                        <p class="card-text mb-1">Price: ${{ medicine.price }}</p>
+                        <a href="{% url 'medicine_detail' medicine.id %}" class="btn btn-info w-100 mb-2">Description</a>
+                        {% if user.is_authenticated %}
+                        <a href="{% url 'add_to_cart' medicine.id %}" class="btn btn-primary w-100">Add to Cart</a>
+                        {% else %}
+                        <a href="{% url 'login' %}" class="btn btn-primary w-100">Login to Add to Cart</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p class="text-center">No related products found for "{{ query }}".</p>
+    {% endif %}
+</div>
+
+
+
 <style>
     .card {
         width: 200px;
