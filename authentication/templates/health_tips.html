@@ -1,17 +1,25 @@
 {% extends "base.html" %}
 
-{% block title %}MedEasy - Health Tips{% endblock %}
+{% block title %}Medicine Store - Health Tips{% endblock %}
 
 {% block content %}
-<div class="container">
-    <h1>Health Tips for a Better Lifestyle</h1>
-    <p>Follow these tips to enhance your physical, mental, and emotional well-being.</p>
-
-    {% for tip in tips %}
-    <div class="tip">
-        <h2>{{ tip.title }}</h2>
-        <p>{{ tip.description }}</p>
+<div class="container mt-5">
+    <div class="text-center">
+        <h1 class="display-4 mb-4">Health Tips for a Better Lifestyle</h1>
+        <p class="lead">Follow these tips to enhance your physical, mental, and emotional well-being.</p>
     </div>
-    {% endfor %}
+
+    <div class="row justify-content-center">
+        {% for tip in tips %}
+        <div class="col-md-10 mb-4">
+            <div class="card h-100 shadow">
+                <div class="card-body">
+                    <h5 class="card-title text-primary">{{ tip.title }}</h5>
+                    <p class="card-text">{{ tip.description }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
 </div>
 {% endblock %}

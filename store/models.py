@@ -15,7 +15,7 @@ class Medicine(models.Model):
         Category,
         on_delete=models.CASCADE,
         related_name="medicines",
-        default= 'OTC Medicine',  # Replace '1' with the ID of an existing category in your database
+        default= 'OTC Medicine',  
     )
     Dosage = models.TextField(blank=True, null=True)
     diseases = models.TextField(blank=True, null=True)
