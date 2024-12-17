@@ -39,6 +39,7 @@ urlpatterns = [
     path('health-tips/', auth_views.health_tips, name='health_tips'),
 
     path('hospitals/', hospital_views.hospital_number, name='hospital_number'),
+    path('confirm-otp/', auth_views.confirm_otp_view, name='confirm_otp'),
 
 ]
 
